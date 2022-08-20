@@ -21,13 +21,14 @@
 /* Display div */
 .display {
     width: 89%;
-    height: 50px;
+    height: 30px;
     border-style: solid;
     border-width: 1px;
     margin-left: 12px;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: white;
+    text-align: center;
 }
 
 /* Keys div */
