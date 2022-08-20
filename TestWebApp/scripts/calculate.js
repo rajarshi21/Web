@@ -1,7 +1,9 @@
 ﻿//var lhs = '';
 //var rhs = '';
-expr = ''
+expr = '';
+before = '';
 var result = 0;
+var product = 1;
 var numberOfKeys = document.querySelectorAll("button").length
 
 for (var iKey = 0; iKey < numberOfKeys; iKey++)
@@ -9,7 +11,6 @@ for (var iKey = 0; iKey < numberOfKeys; iKey++)
     document.querySelectorAll("button")[iKey].addEventListener("click", function () {
         var keyInnerHtml = this.innerHTML;      
         
-
         switch (keyInnerHtml)
         {
             //case '1':
@@ -66,82 +67,111 @@ for (var iKey = 0; iKey < numberOfKeys; iKey++)
             //case 'CE':
             //    document.querySelector(".display").innerHTML = '0';
             //    rhs = '0';
-            //    break;
+            //    break;            
             case '1':
+                //if (before == '=') {
+                //    expr = '';
+                //}
                 expr += '1';
                 document.querySelector(".display").innerHTML = expr;
                 break;
             case '2':
+                if (before == '=') {
+                    expr = '';
+                }
                 expr += '2';
                 document.querySelector(".display").innerHTML = expr;
                 break;
             case '3':
+                
                 expr += '3';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '4':
+            case '4':                
                 expr += '4';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '5':
+            case '5':               
                 expr += '5';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '6':
+            case '6':                
                 expr += '6';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '7':
+            case '7':               
                 expr += '7';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '8':
+            case '8':                
                 expr += '8';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '9':
+            case '9':               
                 expr += '9';
                 document.querySelector(".display").innerHTML = expr;
                 break;
-            case '0':
+            case '0':                
                 expr += '0';
                 document.querySelector(".display").innerHTML = expr;
                 break;
             case '+':
-                expr += '+'
+                expr += '+';
+                document.querySelector(".display").innerHTML = expr;
+                break;
+            case '-':
+                expr += '-';
                 document.querySelector(".display").innerHTML = expr;
                 break;
             case 'x':
-                expr += 'x'
+                expr += 'x';
                 document.querySelector(".display").innerHTML = expr;
                 break;
             case '/':
-                expr += '/'
+                expr += '/';
                 document.querySelector(".display").innerHTML = expr;
                 break;            
             case 'CE':
                 document.querySelector(".display").innerHTML = '0';
                 expr = '';
+                result = 0;
                 break;
             case '=':
-                expr += '='
-                
+                expr += '=';
+
                 document.querySelector(".display").innerHTML = expr;
                 //Code to evaluate the expression - TODO
                 var temp = '';
                 for (var i = 0; i < expr.length; i++) {
-                    console.log(expr.charAt(i));                    
-                    if ((Number(expr.charAt(i))) >= 0 && (Number(expr.charAt(i)) <= 9))
-                    {
+                    console.log(expr.charAt(i));
+                    if ((Number(expr.charAt(i))) >= 0 && (Number(expr.charAt(i)) <= 9)) {
                         temp = temp + expr.charAt(i);
                     }
-                    if (expr.charAt(i) == '+') {
+                    //If the before is a sign?
+                    if ((expr.charAt(i) == '+') || (before == '+')) {
                         result = result + Number(temp);
                         temp = '';
                     }
+                    if ((expr.charAt(i) == '-') || (before == '-')) {
+                        if (result == 0) {
+                            result = Number(temp) - result;
+                        }
+                        else {
+                            result = result - Number(temp);
+                        }
+                        
+                        temp = '';
+                    }
+                    if ((expr.charAt(i) == 'x') || (before == 'x')) {
+                        product = product * Number(temp);
+                        result = product;
+                        temp = '';
+                    }
+                    before = expr.charAt(i);
                 }
-                document.querySelector(".display").innerHTML = result.toString();
-                
+                document.querySelector(".display").innerHTML = expr + result.toString();
+                expr = result.toString();
+                result = 0;
         }
     })
 }
