@@ -1,4 +1,9 @@
-﻿//$(document).ready(function () {
+﻿//small event listener code
+$("button").click(function() {
+    $("h1").css("color", "purple");
+});
+
+//$(document).ready(function () {
 //    $("h1").css("color", "red");
 //})
 
@@ -52,14 +57,14 @@
 //}
 //);
 
-//Another way for event
-$(document).on("keypress", function () {
-    $("h1").text(event.key);
-})
+////Another way for event
+//$(document).on("keypress", function () {
+//    $("h1").text(event.key);
+//})
 
-$("button").on("click", function () {
-    $("h1").slideUp().slideDown().animate({ opacity: 0.5 });
-})
+//$("button").on("click", function () {
+//    $("h1").slideUp().slideDown().animate({ opacity: 0.5 });
+//})
 
 
 
