@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="HardRockAvenueTest-20200119122008" tests="1" time="6.264">
+	<testcase classname="HardRockAvenueTest" name="test_homepageTitle" time="6.264"/>
+	<system-out>
+<![CDATA[Done with all the tests
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

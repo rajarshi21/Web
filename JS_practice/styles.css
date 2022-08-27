@@ -1,0 +1,13 @@
+﻿body {
+    background-color: white;
+}
+
+.big-title {
+    font-size: 10rem;
+    color: yellow;
+    font-family: cursive;
+}
+
+.another-class{
+    margin: 50px;
+}
