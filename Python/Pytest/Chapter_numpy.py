@@ -227,3 +227,4 @@ for item in arr:
 newarr = arr[filter_arr]
 print("Even array is as below")
 print(newarr)
+
