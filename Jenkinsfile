@@ -7,7 +7,7 @@ pipeline {
     }
 
     parameters{
-        booleanParam(name: 'Recursive', defaultValue: true, description: 'Recursive: True/False')
+        booleanParam(name: 'Test', defaultValue: true, description: 'Recursive: True/False')
     }
 
     stages {
@@ -17,15 +17,22 @@ pipeline {
                 echo "building version ${BUILD_NUMBER}"
             }
         }
+         stage('CheckOut') {
+            steps {
+                git branch: 'test/pipeline_ci_ct',
+                    url: 'https://github.com/rajarshi21/Web.git'
+            }
+        }
 
         stage('Test') {
             when{                
                     expression
                     {
-                        params.Recursive
+                        params.Test
                     }                
             }
             steps {
+                sh ‘python3 Python\Python_Pr\Hello.py‘
                 echo 'Hello World'
             }
         }
