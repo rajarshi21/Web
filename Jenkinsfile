@@ -3,7 +3,7 @@ pipeline {
 
     environment{
         NEW_VERSION = '1.3.0'
-        SERVER_CREDENTIALS = credentials('fc8de0bc-32f9-416b-96d4-82ca19dfdecb')
+        SERVER_CREDENTIALS = credentials('test_credentials')
     }
 
     parameters{
@@ -25,17 +25,24 @@ pipeline {
         }
 
         stage('Test') {
-            when{                
+            when{
                     expression
                     {
                         params.Test
-                    }                
+                    }
             }
             steps {
-                sh ‘python3 Python\Python_Pr\Hello.py‘
-                echo 'Hello World'
-            }
-        }
+                   dir("${env.WORKSPACE}\\Python\\Python_Pr"){
+                     //sh "pwd"
+                    bat 'python Hello.py'
+                    }
+
+//                 sh ‘python3 Python\\Python_Pr\\Hello.py‘
+                    //sh 'python script.py'
+                    echo 'Hello World'
+                    }
+
+          }
         stage('Deploy') {
             steps {
                 echo 'Hello World' 
