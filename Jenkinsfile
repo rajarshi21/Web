@@ -37,7 +37,7 @@ pipeline {
                         //sh "pwd"
 
                         def result = bat(script: 'python Hello.py', returnStatus: true)
-                        env.RESULT = result.toString()
+                        env.RESULT = result
                         echo env.RESULT
 //                     echo ${result}
                     }
