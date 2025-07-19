@@ -3,7 +3,7 @@ import sys
 
 def test():
     print("Hello Pipeline")
-    return "False"
+    return "True"
 
 
 if __name__ == '__main__':
