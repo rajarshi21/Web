@@ -48,12 +48,12 @@ pipeline {
         stage('Deploy') {
 
             // Call a Jenkins Job
-            when {
-                expression
-                        {
-                            params.Test
-                        }
-            }
+//             when {
+//                 expression
+//                         {
+//                             params.Test
+//                         }
+//             }
             steps {
                 echo "Testing application"
                 script {
