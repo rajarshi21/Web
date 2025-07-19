@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Hello World'
-                echo "building version ${BUILD_NUMBER}"
+                #echo "building version ${BUILD_NUMBER}"
             }
         }
          stage('CheckOut') {
