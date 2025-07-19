@@ -36,7 +36,7 @@ pipeline {
                    dir("${env.WORKSPACE}\\Python\\Python_Pr"){
                      //sh "pwd"
                     def val = bat (script: 'python Hello.py', returnStdout: true).trim()
-                    echo "The return value: ${val}"
+                    echo ${val}
                     }
                     }
 
