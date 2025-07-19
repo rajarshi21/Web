@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Call a Jenkins Job
-                when { expression { $ { result } != "False" } }
+                when { expression { params.result } }
                 steps {
                     echo "Testing application"
                     script {
