@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    environment{
+    environment {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('test_credentials')
     }
 
-    parameters{
+    parameters {
         booleanParam(name: 'Test', defaultValue: true, description: 'Recursive: True/False')
     }
 
@@ -17,38 +17,44 @@ pipeline {
                 //echo "building version ${BUILD_NUMBER}"
             }
         }
-         stage('CheckOut') {
+        stage('CheckOut') {
             steps {
                 git branch: 'test/pipeline_ci_ct',
-                    url: 'https://github.com/rajarshi21/Web.git'
+                        url: 'https://github.com/rajarshi21/Web.git'
             }
         }
 
         stage('Test') {
-            when{
-                    expression
-                    {
-                        params.Test
-                    }
+            when {
+                expression
+                        {
+                            params.Test
+                        }
             }
             steps {
-                script{
-                   dir("${env.WORKSPACE}\\Python\\Python_Pr"){
-                     //sh "pwd"
+                script {
+                    dir("${env.WORKSPACE}\\Python\\Python_Pr") {
+                        //sh "pwd"
 
-                    def result = bat(script: 'python Hello.py', returnStatus: true)
+                        def result = bat(script: 'python Hello.py', returnStatus: true)
 //                     echo ${result}
                     }
-                    }
+                }
 
 //                 sh ‘python3 Python\\Python_Pr\\Hello.py‘
-                    //sh 'python script.py'
-                    echo 'Hello World'
-                    }
+                //sh 'python script.py'
+                echo 'Hello World'
+            }
 
-          }
+        }
         stage('Deploy') {
             steps {
+                when {
+                    expression
+                            {
+                                env.result == "True"
+                            }
+                }
                 // Call a Jenkins Job
                 script {
                     build job: 'TEST_REPO', wait: true
@@ -56,15 +62,15 @@ pipeline {
             }
         }
     }
-    post{
-        always{
+    post {
+        always {
             //
             echo "In always"
         }
-        success{
-             echo "In success"
+        success {
+            echo "In success"
         }
-        failure{
+        failure {
             echo "In failure"
         }
     }
