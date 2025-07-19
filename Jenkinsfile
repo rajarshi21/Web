@@ -51,7 +51,7 @@ pipeline {
             when {
                 expression
                         {
-                            return env.result == 'True'
+                            //return env.result == 'True'
                         }
             }
             steps {
