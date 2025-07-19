@@ -48,14 +48,15 @@ pipeline {
 
         }
         stage('Deploy') {
+
+            when {
+                expression
+                        {
+                            env.result == "True"
+                        }
+            }
+            // Call a Jenkins Job
             steps {
-                when {
-                    expression
-                            {
-                                env.result == "True"
-                            }
-                }
-                // Call a Jenkins Job
                 script {
                     build job: 'TEST_REPO', wait: true
                 }
