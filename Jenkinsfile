@@ -37,7 +37,9 @@ pipeline {
                      //sh "pwd"
 
                     def result = bat(script: 'python Hello.py', returnStatus: true)
-//                     echo ${result}
+                    if (result == "False") {
+
+                        }
                     }
                     }
 
@@ -50,6 +52,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Call a Jenkins Job
+                
                 script {
                     build job: 'TEST_REPO', wait: true
                 }
