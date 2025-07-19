@@ -37,7 +37,7 @@ pipeline {
                      //sh "pwd"
 
                     def result = bat(script: 'python Hello.py', returnStatus: true)
-                    echo ${result}
+//                     echo ${result}
                     }
                     }
 
