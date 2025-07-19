@@ -46,34 +46,34 @@ pipeline {
 
         }
         stage('Deploy') {
-            steps {
-                // Call a Jenkins Job
-                when {
-                    expression
-                            {
-                                ${result} == 'True'
-                            }
-                        }
-                steps {
-                    echo "Testing application"
-                    script {
-                        build job: 'TEST_REPO', wait: true
-                    }
-                }
 
+            // Call a Jenkins Job
+            when {
+                expression
+                        {
+                            ${result} == 'True'
+                        }
             }
-        }
-    }
-    post {
-        always {
-            //
-            echo "In always"
-        }
-        success {
-            echo "In success"
-        }
-        failure {
-            echo "In failure"
+            steps {
+                echo "Testing application"
+                script {
+                    build job: 'TEST_REPO', wait: true
+                }
+            }
+
         }
     }
 }
+post {
+    always {
+        //
+        echo "In always"
+    }
+    success {
+        echo "In success"
+    }
+    failure {
+        echo "In failure"
+    }
+}
+
