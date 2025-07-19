@@ -34,7 +34,8 @@ pipeline {
             steps {
                    dir("${env.WORKSPACE}\\Python\\Python_Pr"){
                      //sh "pwd"
-                    bat 'python Hello.py'
+                    def val = bat ('python Hello.py', returnStdout: true).trim()
+                    echo 'The return value: ' + val
                     }
 
 //                 sh ‘python3 Python\\Python_Pr\\Hello.py‘
@@ -45,7 +46,10 @@ pipeline {
           }
         stage('Deploy') {
             steps {
-                echo 'Hello World' 
+                // Call a Jenkins Job
+                script {
+                    build job: 'TEST_REPO', wait: true
+                }
             }
         }
     }
