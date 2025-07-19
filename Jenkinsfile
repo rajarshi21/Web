@@ -52,7 +52,7 @@ pipeline {
             when {
                 expression
                         {
-                            return env.result == "True"
+                            env.result == 'True'
                         }
             }
             // Call a Jenkins Job
