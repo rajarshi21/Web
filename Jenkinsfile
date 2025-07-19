@@ -37,7 +37,7 @@ pipeline {
                         //sh "pwd"
 
                         def result = bat(script: 'python Hello.py', returnStatus: true)
-                        env.RESULT = result
+                        env.RESULT = result.toString()
 //                     echo ${result}
                     }
                 }
@@ -53,7 +53,7 @@ pipeline {
             when {
                 expression
                         {
-                            return env.RESULT == 'True'
+                            return env.RESULT == "True"
                         }
             }
             // Call a Jenkins Job
