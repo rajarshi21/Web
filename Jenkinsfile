@@ -36,7 +36,7 @@ pipeline {
                     dir("${env.WORKSPACE}\\Python\\Python_Pr") {
                         //sh "pwd"
 
-                        def result = bat(script: 'python Hello.py', returnStatus: true)
+                        def result = bat(script: 'python Hello.py')
                         env.RESULT = result
                         echo env.RESULT
 //                     echo ${result}
