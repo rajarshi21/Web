@@ -51,7 +51,7 @@ pipeline {
             when {
                 expression
                         {
-                            params.result == 'True'
+                            result == "True"
                         }
             }
             steps {
