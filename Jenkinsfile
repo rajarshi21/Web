@@ -34,8 +34,8 @@ pipeline {
             steps {
                    dir("${env.WORKSPACE}\\Python\\Python_Pr"){
                      //sh "pwd"
-                    val = bat ('python Hello.py', returnStdout: true).trim()
-                    echo 'The return value: ' + val
+                    def val = bat (script: 'python Hello.py', returnStdout: true).trim()
+                    echo "The return value: ${val}"
                     }
 
 //                 sh ‘python3 Python\\Python_Pr\\Hello.py‘
