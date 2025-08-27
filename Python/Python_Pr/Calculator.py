@@ -1,4 +1,5 @@
 import tkinter as tk
+import math
 
 ele = []
 
@@ -20,6 +21,8 @@ def button_click(button_number):
     if button_number == 'AC':
         text_box.delete("1.0", "end")
         ele.clear()
+    elif button_number in ['CE', '%']:
+        pass
     else:
         if button_number == '=':
             result()
@@ -38,11 +41,14 @@ def result():
         s += item
 
     ele.clear()
-    ele.append(s)  # bug here. get the text - #TODO
 
     # Set result to the text box
     text_box.delete("1.0", "end")
     text_box.insert("end", eval(s), "left")
+
+    # Get the text from the text box
+    s = text_box.get("1.0", "end-1c")
+    ele.append(s)
 
 
 # Frame 1
@@ -117,17 +123,25 @@ horizontal_frame5 = tk.Frame(root)
 horizontal_frame5.pack(pady=10)  # Pack the frame itself
 
 # Create and pack buttons horizontally within the frame
-button = tk.Button(horizontal_frame5, text="( )", command=lambda: button_click('()'))
-button.pack(side=tk.LEFT, padx=20)  # Use side=tk.LEFT for horizontal arrangement
-
 button = tk.Button(horizontal_frame5, text="0", command=lambda: button_click('0'))
 button.pack(side=tk.LEFT, padx=20)
 
 button = tk.Button(horizontal_frame5, text=".", command=lambda: button_click('.'))
 button.pack(side=tk.LEFT, padx=20)
 
-button = tk.Button(horizontal_frame5, text="=", command=lambda: button_click('='))
+button = tk.Button(horizontal_frame5, text="(", command=lambda: button_click('('))
+button.pack(side=tk.LEFT, padx=20)  # Use side=tk.LEFT for horizontal arrangement
+button = tk.Button(horizontal_frame5, text=")", command=lambda: button_click(')'))
+button.pack(side=tk.LEFT, padx=20)  # Use side=tk.LEFT for horizontal arrangement
+
+# Frame 6
+horizontal_frame6 = tk.Frame(root)
+horizontal_frame6.pack(pady=10)  # Pack the frame itself
+
+button = tk.Button(horizontal_frame6, text="=", command=lambda: button_click('='), width=20)
 button.pack(side=tk.LEFT, padx=20)
+
+
 
 # Start the Tkinter event loop
 root.mainloop()
