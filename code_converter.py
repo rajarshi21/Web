@@ -1,5 +1,7 @@
 """
-main.py - Example usage of ollama chat and simple list addition.
+main.py - Example usage of ollama chat and simple list addition
+This code helps to convert a code snippet to python
+This can be enhanced further
 """
 
 from ollama import chat
